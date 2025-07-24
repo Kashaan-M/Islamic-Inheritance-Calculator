@@ -1,0 +1,9 @@
+To compile on Linux/Mac:
+$ gcc FinalProject.c -o inheritance
+$ ./inheritance
+
+To compile on Windows using Code::Blocks or Dev C++:
+1. Open FinalProject.c
+2. Build and Run
+
+Note: Uses ANSI escape codes for colored output. Use a compatible terminal (e.g., Command Prompt, Bash, or PowerShell).

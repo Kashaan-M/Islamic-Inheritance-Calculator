@@ -1,0 +1,23 @@
+Test Case 1:
+- Gender: Male
+- Wife: 1
+- Children: 2 Sons, 1 Daughter
+- Parents: Both Alive
+Expected: Distribution among wife, parents, and children with sons getting double.
+
+Test Case 2:
+- Gender: Female
+- Husband: 1
+- No Children
+- Mother alive
+Expected: Husband gets 1/2, mother gets 1/3 of residue
+
+Test Case 3:
+- Gender: Male
+- No primary heirs, but maternal uncle is alive
+Expected: Full estate goes to maternal uncle
+
+Test Case 4:
+- Gender: Female
+- Only one full sister alive
+Expected: Sister gets 1/2 of estate
