@@ -144,7 +144,7 @@ void printTableHeader() {
     printf("│ HEIR                               │ SHARE TYPE         │ AMOUNT       │\n");
 
     for (int i = 0; i < sideSpaces; i++) printf(" ");
-    printf("├────────────────────────────────────┼────────────────────┼──────────────┤\n");
+    printf("├───────────────────────────────────┼────────────────────┼──────────────┤\n");
 }
 
 void printTable(const char col1[], const char col2[], float amount) {
@@ -462,6 +462,20 @@ void distributeDistantRelatives(
     }
 }
 
+void checkExtendedRelatives(char *prompt,char *choice1, char *choice2, int *extrelative, char * errormsg)
+{
+    do{
+        printChoicePrompt(prompt, choice1, choice2);
+        if(scanf("%d", extrelative) != 1) {
+            while(getchar() != '\n');
+            *extrelative = 0;
+        }
+        if(*extrelative < 1 || *extrelative > 2) {
+            printError(errormsg);
+        }
+    }while(*extrelative < 1 || *extrelative > 2);
+}
+
 
 int main() {
 
@@ -532,62 +546,26 @@ int main() {
     printSectionHeader("NO PRIMARY HEIRS FOUND");
     printf("Checking for Extended Relatives...\n\n");
 
-    extendedRelatives = 0; 
-
-    printChoicePrompt("Are there any children of daughters?", "YES", "NO");
-    scanf("%d", &daughterChildren);
-    while(daughterChildren < 1 || daughterChildren > 2) {
-        printError("Invalid input!");
-        scanf("%d", &daughterChildren);
-    }
+    extendedRelatives = 0;
+    checkExtendedRelatives("Are there any children of daughters?", "YES", "NO", &daughterChildren, "Invalid input!");
     if (daughterChildren == 1) extendedRelatives++;
 
-    printChoicePrompt("Are there any children of sisters?", "YES", "NO");
-    scanf("%d", &sisterChildren);
-    while(sisterChildren < 1 || sisterChildren > 2) {
-        printError("Invalid input!");
-        scanf("%d", &sisterChildren);
-    }
+    checkExtendedRelatives("Are there any children of sisters?", "YES", "NO", &sisterChildren, "Invalid input!");
     if (sisterChildren == 1) extendedRelatives++;
 
-    printChoicePrompt("Is any maternal uncle/aunt alive?", "YES", "NO");
-    scanf("%d", &maternalUncle);
-    while(maternalUncle < 1 || maternalUncle > 2) {
-        printError("Invalid input!");
-        scanf("%d", &maternalUncle);
-    }
+    checkExtendedRelatives("Is any maternal uncle/aunt alive?", "YES", "NO", &maternalUncle, "Invalid input!");
     if (maternalUncle == 1) extendedRelatives++;
 
-    printChoicePrompt("Is any paternal aunt alive?", "YES", "NO");
-    scanf("%d", &paternalAunt);
-    while(paternalAunt < 1 || paternalAunt > 2) {
-        printError("Invalid input!");
-        scanf("%d", &paternalAunt);
-    }
+    checkExtendedRelatives("Is any paternal aunt alive?", "YES", "NO", &paternalAunt, "Invalid input!");
     if (paternalAunt == 1) extendedRelatives++;
 
-    printChoicePrompt("Are there any maternal cousins?", "YES", "NO");
-    scanf("%d", &maternalCousins);
-    while(maternalCousins < 1 || maternalCousins > 2) {
-        printError("Invalid input!");
-        scanf("%d", &maternalCousins);
-    }
+    checkExtendedRelatives("Are there any maternal cousins?", "YES", "NO", &maternalCousins, "Invalid input!");
     if (maternalCousins == 1) extendedRelatives++;
 
-    printChoicePrompt("Are there any paternal female cousins?", "YES", "NO");
-    scanf("%d", &paternalCousins);
-    while(paternalCousins < 1 || paternalCousins > 2) {
-        printError("Invalid input!");
-        scanf("%d", &paternalCousins);
-    }
+    checkExtendedRelatives("Are there any paternal female cousins?", "YES", "NO", &paternalCousins, "Invalid input!");
     if (paternalCousins == 1) extendedRelatives++;
 
-    printChoicePrompt("Is maternal grandfather alive?", "YES", "NO");
-    scanf("%d", &maternalGrandfather);
-    while(maternalGrandfather < 1 || maternalGrandfather > 2) {
-        printError("Invalid input!");
-        scanf("%d", &maternalGrandfather);
-    }
+    checkExtendedRelatives("Is maternal grandfather alive?", "YES", "NO", &maternalGrandfather, "Invalid input!");
     if (maternalGrandfather == 1) extendedRelatives++;
 }
     
