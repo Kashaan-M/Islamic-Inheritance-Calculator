@@ -144,7 +144,7 @@ void printTableHeader() {
     printf("│ HEIR                               │ SHARE TYPE         │ AMOUNT       │\n");
 
     for (int i = 0; i < sideSpaces; i++) printf(" ");
-    printf("├───────────────────────────────────┼────────────────────┼──────────────┤\n");
+    printf("├────────────────────────────────────┼────────────────────┼──────────────┤\n");
 }
 
 void printTable(const char col1[], const char col2[], float amount) {
